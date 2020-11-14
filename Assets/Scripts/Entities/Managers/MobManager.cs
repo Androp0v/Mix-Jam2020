@@ -6,9 +6,9 @@ public class MobManager : MonoBehaviour
 {
 
     // MOB MANAGER PROPERTIES
-    public Dictionary<int, BaseMob> mobDict;
-    public Dictionary<(int,int), double> distanceDict;
-    public List<int> allIDs;
+    public Dictionary<int, BaseMob> mobDict = new Dictionary<int, BaseMob>();
+    public Dictionary<(int,int), double> distanceDict = new Dictionary<(int,int), double>();
+    public List<int> allIDs = new List<int>();
     
     // Private properties
     private int _mobCount = 0;
@@ -17,7 +17,7 @@ public class MobManager : MonoBehaviour
     // Public functions to modify MobController list
 
     public void RegisterMob(BaseMob newMob)
-    {
+    {   
         // Add mob to the list
         mobDict[_nextID] = newMob;
         newMob.managerID = _nextID;
