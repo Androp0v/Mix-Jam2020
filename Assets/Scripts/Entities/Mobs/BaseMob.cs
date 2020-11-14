@@ -50,6 +50,7 @@ public abstract class BaseMob : MonoBehaviour
         oldDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
         nextDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
         // Register mob in manager
+        Debug.Log("REGISTERED MOB");
         manager.RegisterMob(this);
         // Call specific start on subclasses
         StartSpecific();

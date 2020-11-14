@@ -8,20 +8,25 @@ public class MobManager : MonoBehaviour
     // MOB MANAGER PROPERTIES
     public Dictionary<int, BaseMob> mobDict = new Dictionary<int, BaseMob>();
     public Dictionary<(int,int), double> distanceDict = new Dictionary<(int,int), double>();
-    public List<int> allIDs = new List<int>();
+    private List<int> allIDs = new List<int>();
     
     // Private properties
     private int _mobCount = 0;
     private int _nextID = 0;
 
     // Public functions to modify MobController list
+    
+    public List<int> getAllIDs(){
+        return allIDs;
+    }
 
     public void RegisterMob(BaseMob newMob)
     {   
         // Add mob to the list
         mobDict[_nextID] = newMob;
-        newMob.managerID = _nextID;
         allIDs.Add(_nextID);
+        newMob.managerID = _nextID;
+        Debug.Log("REGISTERED: " + _nextID.ToString());
         // Increment the _nextID used value (works as a primaary autoincrement key)
         _nextID += 1;
     }
@@ -35,8 +40,12 @@ public class MobManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {   
+        /*Debug.Log("INITIALIZE LIST");
+        allIDs = new List<int>();
+        foreach ( var x in allIDs) {
+            Debug.Log( x.ToString());
+        }*/
     }
 
     // Update is called once per frame
@@ -47,7 +56,7 @@ public class MobManager : MonoBehaviour
 
         for (int i = 0; i < allIDs.Count; i++) {
             for (int j = i; j < allIDs.Count - i; j++) {
-
+                
                 // Compute the direction between mobs
                 double distance = new Vector2(mobDict[allIDs[j]].rigidBody.position.x - mobDict[allIDs[i]].rigidBody.position.x,
                                               mobDict[allIDs[j]].rigidBody.position.y - mobDict[allIDs[i]].rigidBody.position.y)

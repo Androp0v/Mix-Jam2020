@@ -17,7 +17,7 @@ public abstract class BaseBehaviour
         MobManager manager = attachedMob.manager;
 
         // Loop over all entities to find closest food
-        foreach (int uniqueID in attachedMob.manager.allIDs){
+        foreach (int uniqueID in attachedMob.manager.getAllIDs()){
             // Check that the mobDict actually contains that mob ID
             if (manager.mobDict.ContainsKey(uniqueID)){
 
@@ -36,7 +36,7 @@ public abstract class BaseBehaviour
                 }
 
             } else {
-                Debug.Log("Mob ID not in dictionary!");
+                Debug.Log("uniqueID not in list: " + uniqueID.ToString());
             }
         }
 
