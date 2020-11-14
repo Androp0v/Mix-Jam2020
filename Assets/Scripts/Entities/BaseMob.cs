@@ -17,8 +17,8 @@ public class BaseMob : MonoBehaviour
     public const double seekingFoodRadius = 30; //Radius for seeking food
 
     // MOB PROPERTIES
-    private Rigidbody2D rigidBody;
-    private BaseBehaviour behaviour;
+    public Rigidbody2D rigidBody;
+    public BaseBehaviour behaviour;
 
     // MOB STATUS
     private int _hunger = 20;
@@ -50,6 +50,8 @@ public class BaseMob : MonoBehaviour
         if (_age > maxAge) {
             OnDeath();
         }
+        // Move the mob
+        behaviour.Move(rigidBody);
     }
 
     // OnDeath is called when the mob dies
