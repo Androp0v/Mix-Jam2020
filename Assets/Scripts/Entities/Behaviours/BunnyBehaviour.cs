@@ -33,8 +33,15 @@ public class BunnyBehaviour : BaseBehaviour
 
         // If direction is not null it means it has found a close food
         if (direction.HasValue){
-            Vector2 moveDirection = direction ?? Vector2.zero;
-            attachedMob.rigidBody.velocity = moveDirection;
+
+            // If there's food nearbay, try to get it
+            Vector2 moveDirection = ( direction ?? Vector2.zero ).normalized;
+            attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+
+        } else {
+
+            // Otherwise, move at random
+
         }
     }
 }

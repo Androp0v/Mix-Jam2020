@@ -18,9 +18,12 @@ public abstract class BaseMob : MonoBehaviour
     [SerializeField]
     public const float maxAge = 1000; // Age until mob dies
     [SerializeField]
-    public const int speed = 40; // Speed at which the mob moves
-    [SerializeField]
     public const double seekingFoodRadius = 30; // Radius for seeking food
+
+    private float mobSpeed = 5; // Speed at which the mob moves
+    public float getMobSpeed(){
+        return mobSpeed;
+    }
 
     // MOB PROPERTIES
     public Rigidbody2D rigidBody;
@@ -67,7 +70,7 @@ public abstract class BaseMob : MonoBehaviour
         }
         // Move the mob
         behaviour.Move();
-        
+
     }
 
     // OnDeath is called when the mob dies
