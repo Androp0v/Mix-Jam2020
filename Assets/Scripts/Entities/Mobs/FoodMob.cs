@@ -9,8 +9,8 @@ public class FoodMob : BaseMob
         Debug.Log("Food started");
         mobType = STATIC_FOOD;
         // Initialize behaviour
-        //behaviour = new BaseBehaviour();
-        //behaviour.attachedMob = this;
+        behaviour = new StaticFoodBehaviour();
+        behaviour.attachedMob = this;
     }
 
 }

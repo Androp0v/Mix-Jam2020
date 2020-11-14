@@ -66,9 +66,8 @@ public abstract class BaseMob : MonoBehaviour
             OnDeath();
         }
         // Move the mob
-        if (mobType != STATIC_FOOD){
-            behaviour.Move();
-        }
+        behaviour.Move();
+        
     }
 
     // OnDeath is called when the mob dies

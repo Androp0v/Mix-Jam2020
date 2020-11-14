@@ -7,6 +7,38 @@ public abstract class BaseBehaviour
 {   
     // BEHAVIOUR PROPERTIES
     public BaseMob attachedMob;
+    public int predatorKillRadius = 1;
+
+    // Check predator too close
+    public virtual void checkPredatorTooClose(int predatorType){
+
+        MobManager manager = attachedMob.manager;
+
+        // Loop over all entities to find closest predator
+        foreach (int uniqueID in attachedMob.manager.getAllIDs()){
+            // Check that the mobDict actually contains that mob ID
+            if (manager.mobDict.ContainsKey(uniqueID)){
+
+                BaseMob otherMob = manager.mobDict[uniqueID];
+                
+                // Check if the otherMob is a predator for a given class
+                if (otherMob.mobType == predatorType){
+                    // Distance to predator
+                    double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
+                    
+                    if (distance < predatorKillRadius){
+                        attachedMob.OnDeath();
+                        manager.UnRegisterMob(attachedMob);
+                        return;
+                    }
+                }
+
+            } else {
+                Debug.Log("uniqueID not in list: " + uniqueID.ToString());
+            }
+        }
+
+    }
     
     // Retrieve closest food
     public virtual (Vector2?, int?) getClosestFood(){
