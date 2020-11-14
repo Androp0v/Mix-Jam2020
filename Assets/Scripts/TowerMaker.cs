@@ -6,8 +6,7 @@ public class TowerMaker : MonoBehaviour
 {
     public GameController gameController;
     public GameObject notower;
-    public GameObject eiffel;
-    public GameObject khalifa;
+    public GameObject tower1;
     GameObject towerToCreate;
     GameObject createdTower;
 
@@ -18,13 +17,9 @@ public class TowerMaker : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (gameController.selectedTower == "Eiffel")
+        if (gameController.selectedTower == "Tower1")
         {
-            towerToCreate = eiffel;
-        }
-        else if (gameController.selectedTower == "Khalifa")
-        {
-            towerToCreate = khalifa;
+            towerToCreate = tower1;
         }
         if (gameController.selectedTower == "Erase")
         {
