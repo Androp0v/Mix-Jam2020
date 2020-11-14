@@ -15,7 +15,7 @@ public class BunnyBehaviour : BaseBehaviour
     {   
         Vector2? direction = new Vector2();
         int? foodID = 0;
-        (direction, foodID) = getClosestFood();
+        (direction, foodID) = getClosestFood(BaseMob.STATIC_FOOD);
         Debug.Log("No food found");
         if (direction.HasValue){
             Debug.Log("There's a direction");
@@ -27,9 +27,16 @@ public class BunnyBehaviour : BaseBehaviour
 
     // Move function, default to random walk
     override public void Move(){
+
+        // PREDATOR CHECK
+
+        checkPredatorTooClose(BaseMob.FOX_MOB);
+
+        // FOOD SEEKING
+
         Vector2? direction = new Vector2();
         int? foodID = 0;
-        (direction, foodID) = getClosestFood();
+        (direction, foodID) = getClosestFood(BaseMob.STATIC_FOOD);
 
         // If direction is not null it means it has found a close food
         if (direction.HasValue){
@@ -39,9 +46,7 @@ public class BunnyBehaviour : BaseBehaviour
             attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
 
         } else {
-
             randomWalk();
-
         }
     }
 }

@@ -11,6 +11,7 @@ public abstract class BaseMob : MonoBehaviour
     public const int STATIC_FOOD = 0;
     public const int BASE_MOB = 1;
     public const int BUNNY_MOB = 2;
+    public const int FOX_MOB = 3;
 
     // MOB STATS
     [SerializeField]

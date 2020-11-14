@@ -49,7 +49,7 @@ public abstract class BaseBehaviour
     }
     
     // Retrieve closest food
-    public virtual (Vector2?, int?) getClosestFood(){
+    public virtual (Vector2?, int?) getClosestFood(int foodType){
 
         double minFoodDistance = double.MaxValue;
         Vector2 closestFoodPosition = Vector2.zero;
@@ -64,7 +64,7 @@ public abstract class BaseBehaviour
                 BaseMob otherMob = manager.mobDict[uniqueID];
 
                 // Check if the otherMob is food
-                if (otherMob.mobType == BaseMob.STATIC_FOOD){
+                if (otherMob.mobType == foodType){
                     // Distance to food item
                     double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
                     // If distance is closer than the last distance saved, update the closest distance and ID
