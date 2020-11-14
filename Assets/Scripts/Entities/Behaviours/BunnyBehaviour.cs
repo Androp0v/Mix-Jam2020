@@ -40,7 +40,7 @@ public class BunnyBehaviour : BaseBehaviour
 
         } else {
 
-            // Otherwise, move at random
+            randomWalk();
 
         }
     }

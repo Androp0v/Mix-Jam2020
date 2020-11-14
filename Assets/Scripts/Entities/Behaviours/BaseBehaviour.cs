@@ -9,6 +9,14 @@ public abstract class BaseBehaviour
     public BaseMob attachedMob;
     public int predatorKillRadius = 1;
 
+    // USED FOR RANDOM WALK
+    private Vector2 _oldDirection = new Vector2(0,0);
+    private Vector2 _nextDirection = new Vector2(0,0);
+    private Vector2 _movementDirection = new Vector2(0,0);
+    private int _currentSteps = 0;
+    private const int interpolatingSteps = 30;
+    
+
     // Check predator too close
     public virtual void checkPredatorTooClose(int predatorType){
 
@@ -84,7 +92,31 @@ public abstract class BaseBehaviour
     
     // Random Walk function (idle)
     protected void randomWalk(){
-        // TO-DO RANDOM WALK HERE
+        
+        float maxAngle = 0.1f;
+
+        if (_oldDirection == new Vector2(0, 0) || _nextDirection == new Vector2(0, 0)){
+            _oldDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
+            _nextDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
+        }
+
+        if (_currentSteps == interpolatingSteps){
+            _oldDirection = _nextDirection;
+            attachedMob.rigidBody.velocity = _nextDirection * (attachedMob.getMobSpeed());
+
+            //_nextDirection = _oldDirection.Rotate(Random.Range(-maxAngle, maxAngle));
+            _nextDirection.x = Random.Range(-1f,1f);
+            _nextDirection.y = Random.Range(-1f,1f);
+            _nextDirection = _nextDirection.normalized;
+
+            _currentSteps = 0;
+        }
+        else{
+            _movementDirection = Vector2.Lerp(_oldDirection, _nextDirection, (float)_currentSteps / interpolatingSteps).normalized;
+            attachedMob.rigidBody.velocity = _movementDirection * (attachedMob.getMobSpeed());
+
+            _currentSteps += 1;
+        }
     }
 
     // Move function, default to random walk

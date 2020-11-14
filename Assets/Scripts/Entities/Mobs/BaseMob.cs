@@ -36,9 +36,6 @@ public abstract class BaseMob : MonoBehaviour
     private int _matingUrge = 10;
     private double _age = 0;
 
-    public Vector2 oldDirection = new Vector2(0,0);
-    public Vector2 nextDirection = new Vector2(0,0);
-
     // Specific subclass Start is overriden in subclasses
     public abstract void StartSpecific();
 
@@ -49,9 +46,6 @@ public abstract class BaseMob : MonoBehaviour
         _age = 0.0;
         // Initialize the rigidBody
         //rigidBody = GameObject.AddComponent<Rigidbody2D>();
-        // Initialize moving direction
-        oldDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
-        nextDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;
         // Register mob in manager
         Debug.Log("REGISTERED MOB");
         manager.RegisterMob(this);
