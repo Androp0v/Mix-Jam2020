@@ -19,6 +19,7 @@ public class BaseMob : MonoBehaviour
     // MOB PROPERTIES
     public Rigidbody2D rigidBody;
     public BaseBehaviour behaviour;
+    public int managerID;
 
     // MOB STATUS
     private int _hunger = 20;
