@@ -10,16 +10,19 @@ public class BaseMob : MonoBehaviour
 
     // MOB STATS
     [SerializeField]
-    public const float maxAge = 0; //Age until mob dies
+    public MobManager manager; // Single object that manages all mobs
     [SerializeField]
-    public const int speed = 40; //Speed at which the mob moves
+    public const float maxAge = 0; // Age until mob dies
     [SerializeField]
-    public const double seekingFoodRadius = 30; //Radius for seeking food
+    public const int speed = 40; // Speed at which the mob moves
+    [SerializeField]
+    public const double seekingFoodRadius = 30; // Radius for seeking food
 
     // MOB PROPERTIES
     public Rigidbody2D rigidBody;
     public BaseBehaviour behaviour;
     public int managerID;
+    public string mobType;
 
     // MOB STATUS
     private int _hunger = 20;

@@ -13,6 +13,28 @@ public class BaseBehaviour
     {
         
     }
+
+    // Retrieve closest food
+    public virtual (Vector2?, double?) getClosestFood(Rigidbody2D rigidbody){
+
+        double minFoodDistance = double.MaxValue;
+
+        // Loop over all entities to find closest food
+        foreach (int uniqueID in attachedMob.manager.allIDs){
+
+            if (attachedMob.manager.mobDict.ContainsKey(uniqueID)){
+                /*switch (attachedMob.manager.mobDict.GetType){
+                    // TO-DO case FoodMob
+                    default:
+                        // Do nothing
+                }*/
+            } else {
+                Debug.Log("Mob ID not in dictionary!");
+            }
+        }
+        
+        return (null,null);
+    }
     
     // Random Walk function (idle)
     protected void randomWalk(Rigidbody2D _rigidBody){
