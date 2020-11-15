@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  mobPrefab: {fileID: 2371892547284824423}
   rigidBody: {fileID: 2371892547284824443}
   managerID: 0
   mobType: 1
