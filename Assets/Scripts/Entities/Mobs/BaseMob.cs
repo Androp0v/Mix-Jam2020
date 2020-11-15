@@ -16,17 +16,23 @@ public abstract class BaseMob : MonoBehaviour
     // MOB STATS
     [SerializeField]
     public MobManager manager; // Single object that manages all mobs
-    public float maxAge = 10; // Age until mob dies
+
+    private const float maxAge = 300; /// Age until mob dies
+    public virtual double getMaxAge(){
+        return maxAge;
+    }
     
     private const double seekingFoodRadius = 10; // Radius for seeking food
     public double getSeekingFoodRadius(){
         return seekingFoodRadius;
     }
 
-    private float mobSpeed = 5; // Speed at which the mob moves
+    private float mobSpeed = 1; // Speed at which the mob moves
     public float getMobSpeed(){
         return mobSpeed;
     }
+
+    public const float waitTimeAfterMate = 30;
 
     // MOB PROPERTIES
     public Rigidbody2D rigidBody;
@@ -38,6 +44,15 @@ public abstract class BaseMob : MonoBehaviour
     private int _hunger = 20;
     private int _matingUrge = 10;
     private double _age = 0;
+    public double timeSinceLastMating = double.MaxValue;
+
+    public bool wantsToMate(){
+        if (timeSinceLastMating > waitTimeAfterMate){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // Specific subclass Start is overriden in subclasses
     public abstract void StartSpecific();
@@ -62,9 +77,10 @@ public abstract class BaseMob : MonoBehaviour
         // Update age of the mob on every update
         _age += simulationTimestep;
         // Check if the mob is too old
-        if (_age > maxAge) {
+        if (_age > getMaxAge()) {
             OnDeath();
         }
+        timeSinceLastMating += simulationTimestep;
         // Move the mob
         behaviour.Move();
 
@@ -72,6 +88,10 @@ public abstract class BaseMob : MonoBehaviour
 
     // OnDeath is called when the mob dies
     public void OnDeath(){
+        manager.UnRegisterMob(this);
+        rigidBody.simulated = false;
+        rigidBody.velocity = Vector2.zero;
+        this.gameObject.SetActive(false);
         Destroy(transform.gameObject);
     }
 

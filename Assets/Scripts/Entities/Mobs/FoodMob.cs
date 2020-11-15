@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodMob : BaseMob
-{
+{   
+
+    override public double getMaxAge(){
+        return float.MaxValue; // Food doesn't die of old age
+    }
+
     // Override StartSpecific
     override public void StartSpecific(){
         Debug.Log("Food started");
@@ -11,9 +16,6 @@ public class FoodMob : BaseMob
         // Initialize behaviour
         behaviour = new StaticFoodBehaviour();
         behaviour.attachedMob = this;
-
-        // Modify superclass properties
-        maxAge = float.MaxValue; // Food doesn't die
     }
 
 }
