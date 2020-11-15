@@ -14,7 +14,6 @@ public abstract class BaseMob : MonoBehaviour
     public const int FOX_MOB = 3;
 
     // MOB STATS
-    [SerializeField]
     public MobManager manager; // Single object that manages all mobs
 
     private const float maxAge = 300; /// Age until mob dies
@@ -59,7 +58,9 @@ public abstract class BaseMob : MonoBehaviour
 
     // Start is called before the first frame update (setup mob here)
     void Start()
-    {
+    {   
+        // Programatically retrieve manager
+        manager = GameObject.FindWithTag("MobManager").GetComponent<MobManager>();
         // Set the age to zero
         _age = 0.0;
         // Initialize the rigidBody
