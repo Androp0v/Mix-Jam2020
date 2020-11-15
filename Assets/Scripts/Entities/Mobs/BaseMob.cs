@@ -12,12 +12,17 @@ public abstract class BaseMob : MonoBehaviour
     public const int BASE_MOB = 1;
     public const int BUNNY_MOB = 2;
     public const int FOX_MOB = 3;
+    public const int CARROT_MOB = 4;
+    public const int BUNNY_MOB_CHILD = 5;
+    public const int FOX_MOB_CHILD = 6;
+    public const int CARROT_MOB_CHILD = 7;
 
     // MOB STATS
     public MobManager manager; // Single object that manages all mobs
 
     [SerializeField]
-    public GameObject mobPrefab; // Prefab used to generate children 
+    public GameObject mobPrefab; // Prefab used to generate adults 
+    public GameObject mobPrefabChild; // Prefab used to generate children 
 
     private const float maxAge = 300; /// Age until mob dies
     public virtual double getMaxAge(){
@@ -46,6 +51,12 @@ public abstract class BaseMob : MonoBehaviour
     private int _hunger = 20;
     private int _matingUrge = 10;
     private double _age = 0;
+    public double getAge(){
+        return _age;
+    }
+    public void setAge(double age){
+        _age = age;
+    }
     public double timeSinceLastMating = double.MaxValue;
 
     public bool wantsToMate(){
@@ -69,7 +80,6 @@ public abstract class BaseMob : MonoBehaviour
         // Initialize the rigidBody
         //rigidBody = GameObject.AddComponent<Rigidbody2D>();
         // Register mob in manager
-        Debug.Log("REGISTERED MOB");
         manager.RegisterMob(this);
         // Call specific start on subclasses
         StartSpecific();
