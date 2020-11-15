@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FoxMob : BaseMob
 {
+    // Override superclass properties
+    override public float getMobSpeed(){
+        return 1.5f;
+    } 
+
     // Override StartSpecific
     override public void StartSpecific(){
         Debug.Log("Fox started");

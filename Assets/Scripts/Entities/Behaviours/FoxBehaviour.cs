@@ -9,16 +9,45 @@ public class FoxBehaviour : BaseBehaviour
 
         // FOOD SEEKING
 
-        Vector2? direction = new Vector2();
+        Vector2? directionFood = new Vector2();
         int? foodID = 0;
-        (direction, foodID) = getClosestFood(BaseMob.BUNNY_MOB);
+        (directionFood, foodID) = getClosestFood(BaseMob.BUNNY_MOB);
+
+        // MATE SEEKING
+
+        Vector2? directionMating = new Vector2();
+        int? matingID = 0;
+        (directionMating, matingID) = getClosestMatingPartner();
+
+        checkIfMating();
 
         // If direction is not null it means it has found a close food
-        if (direction.HasValue){
+        if (directionFood.HasValue || directionMating.HasValue){
+            //Debug.Log("Food or mating have values");
 
-            // If there's food nearbay, try to get it
-            Vector2 moveDirection = ( direction ?? Vector2.zero ).normalized;
-            attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+            if (directionMating == null){
+                // If there's food nearby, try to get it
+                Vector2 moveDirection = ( directionFood ?? Vector2.zero ).normalized;
+                attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+            } else if (directionFood == null){
+                //Debug.Log("Food is null");
+                // If there's mating opportunities nearby, try to get it
+                Vector2 moveDirection = ( directionMating ?? Vector2.zero ).normalized;
+                attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+            } else {
+                //Debug.Log("Neither food nor mating are null");
+                Vector2 directionFoodUnwrapped = directionFood ?? Vector2.zero;
+                Vector2 directionMatingUnwrapped = directionMating ?? Vector2.zero;
+                if (directionFoodUnwrapped.magnitude < directionMatingUnwrapped.magnitude){
+                    // If there's mating opportunities nearby, try to get it
+                    Vector2 moveDirection = ( directionMating ?? Vector2.zero ).normalized;
+                    attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+                } else {
+                    // If there's mating opportunities nearby, try to get it
+                    Vector2 moveDirection = ( directionMating ?? Vector2.zero ).normalized;
+                    attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+                }
+            }
 
         } else {
             randomWalk();

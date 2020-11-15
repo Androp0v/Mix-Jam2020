@@ -90,7 +90,7 @@ public abstract class BaseBehaviour
                         closestFoodID = uniqueID;
                         closestFoodPosition = otherMob.rigidBody.position;
                     }
-                    
+
                 }
 
             } else {
@@ -136,6 +136,57 @@ public abstract class BaseBehaviour
                 Debug.Log("uniqueID not in list: " + uniqueID.ToString());
             }
         }
+    }
+
+    // Check if another creature is close to mate
+    public virtual (Vector2?, int?) getClosestPredator(int predatorType){
+
+        // Check that the timeframe after last mating is enough
+        if (!attachedMob.wantsToMate()){
+            return (null, null);
+        }
+
+        double minFoodDistance = double.MaxValue;
+        Vector2 closestFoodPosition = Vector2.zero;
+        int closestFoodID = -1; // Set initial closestFoodID to -1 (invalid, all IDs are chosen positive in the manager)
+        MobManager manager = attachedMob.manager;
+
+        // Loop over all entities to find closest food
+        foreach (int uniqueID in attachedMob.manager.getAllIDs()){
+            // Check that the mobDict actually contains that mob ID
+            if (manager.mobDict.ContainsKey(uniqueID)){
+
+                BaseMob otherMob = manager.mobDict[uniqueID];
+
+                // Check if the otherMob is of the same type and not itself
+                if ((otherMob.mobType == predatorType) 
+                    && (otherMob.managerID != attachedMob.managerID) 
+                    && (otherMob.wantsToMate())){
+
+                    // Distance to food item
+                    double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
+                    // If distance is closer than the last distance saved, update the closest distance and ID
+                    if ((distance < minFoodDistance) & (distance < attachedMob.getSeekingFoodRadius())){
+                        minFoodDistance = distance;
+                        closestFoodID = uniqueID;
+                        closestFoodPosition = otherMob.rigidBody.position;
+                    }
+                    
+                }
+
+            } else {
+                Debug.Log("uniqueID not in list: " + uniqueID.ToString());
+            }
+        }
+
+        // If a valid food is encountered, return its ID and direction
+        if (closestFoodID != -1) {
+            Vector2 direction = new Vector2(closestFoodPosition.x - attachedMob.rigidBody.position.x,
+                                            closestFoodPosition.y - attachedMob.rigidBody.position.y);
+            return (direction, closestFoodID);
+        }
+        
+        return (null,null);
     }
     
     // Retrieve closest food

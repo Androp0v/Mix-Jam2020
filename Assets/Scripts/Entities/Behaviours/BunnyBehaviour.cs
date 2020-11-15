@@ -28,10 +28,6 @@ public class BunnyBehaviour : BaseBehaviour
     // Move function, default to random walk
     override public void Move(){
 
-        // PREDATOR CHECK
-
-        checkPredatorTooClose(BaseMob.FOX_MOB);
-
         // FOOD SEEKING
 
         Vector2? directionFood = new Vector2();
@@ -77,5 +73,21 @@ public class BunnyBehaviour : BaseBehaviour
         } else {
             randomWalk();
         }
+
+        // PREDATOR CHECK
+
+        checkPredatorTooClose(BaseMob.FOX_MOB);
+
+        Vector2? directionPredator = new Vector2();
+        int? predatorID = 0;
+        (directionPredator, predatorID) = getClosestPredator(BaseMob.FOX_MOB);
+
+        if (directionPredator.HasValue){
+            // If there's food nearby, try to get it
+            Vector2 moveDirection = ( -directionPredator ?? Vector2.zero ).normalized;
+            attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+        }
+
+
     }
 }
