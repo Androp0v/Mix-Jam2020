@@ -30,7 +30,7 @@ public abstract class BaseMob : MonoBehaviour
     }
 
     private float mobSpeed = 1; // Speed at which the mob moves
-    public float getMobSpeed(){
+    public virtual float getMobSpeed(){
         return mobSpeed;
     }
 
