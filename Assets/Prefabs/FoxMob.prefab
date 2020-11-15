@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2371892547284824442}
   - component: {fileID: 2371892547284824421}
-  - component: {fileID: 2371892547284824420}
   - component: {fileID: 2371892547284824443}
+  - component: {fileID: 1590474777371451671}
   m_Layer: 0
   m_Name: FoxMob
   m_TagString: Untagged
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2371892547284824420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371892547284824423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0b7c682714342509f47896efe92ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  rigidBody: {fileID: 2371892547284824443}
-  managerID: 0
-  mobType: 1
 --- !u!50 &2371892547284824443
 Rigidbody2D:
   serializedVersion: 4
@@ -121,3 +105,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1590474777371451671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371892547284824423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93261b4e9cbc0459792be474dda03c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  rigidBody: {fileID: 2371892547284824443}
+  managerID: 0
+  mobType: 1
