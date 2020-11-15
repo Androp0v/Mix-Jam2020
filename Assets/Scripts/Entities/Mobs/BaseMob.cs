@@ -16,8 +16,7 @@ public abstract class BaseMob : MonoBehaviour
     // MOB STATS
     [SerializeField]
     public MobManager manager; // Single object that manages all mobs
-    [SerializeField]
-    public const float maxAge = 1000; // Age until mob dies
+    public float maxAge = 10; // Age until mob dies
     
     private const double seekingFoodRadius = 10; // Radius for seeking food
     public double getSeekingFoodRadius(){

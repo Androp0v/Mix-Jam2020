@@ -11,6 +11,9 @@ public class FoodMob : BaseMob
         // Initialize behaviour
         behaviour = new StaticFoodBehaviour();
         behaviour.attachedMob = this;
+
+        // Modify superclass properties
+        maxAge = float.MaxValue; // Food doesn't die
     }
 
 }
