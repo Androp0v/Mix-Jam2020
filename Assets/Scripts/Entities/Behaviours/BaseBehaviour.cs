@@ -8,7 +8,7 @@ public abstract class BaseBehaviour
     // BEHAVIOUR PROPERTIES
     public BaseMob attachedMob;
     public int predatorKillRadius = 1;
-    public int matingRadius = 1;
+    public double matingRadius = 1;
 
     // USED FOR RANDOM WALK
     private Vector2 _oldDirection = new Vector2(0,0);
@@ -30,14 +30,23 @@ public abstract class BaseBehaviour
                 BaseMob otherMob = manager.mobDict[uniqueID];
                 
                 // Check if the otherMob is a predator for a given class
-                if (otherMob.mobType == attachedMob.mobType){
+                if ((otherMob.mobType == attachedMob.mobType) && (otherMob.managerID != attachedMob.managerID)){
                     // Distance to predator
                     double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
                     
                     if ((distance < matingRadius) && (otherMob.wantsToMate() && attachedMob.wantsToMate())){
                         attachedMob.timeSinceLastMating = 0;
                         otherMob.timeSinceLastMating = 0;
-                        Debug.Log("THEY MATED!");
+                        
+                        // Compute mating position as the average between the two positions
+                        float positionX = (float) (attachedMob.rigidBody.position.x + otherMob.rigidBody.position.x) / 2.0f;
+                        float positionY = (float) (attachedMob.rigidBody.position.y + otherMob.rigidBody.position.y) / 2.0f;
+                        
+                        // Save the child object
+                        GameObject child = GameObject.Instantiate(attachedMob.mobPrefab, new Vector2(positionX, positionY), Quaternion.identity);
+                        // Childs do not want to mate
+                        child.GetComponent<BaseMob>().timeSinceLastMating = 0.0;
+
                         return;
                     }
                 }
@@ -68,8 +77,11 @@ public abstract class BaseBehaviour
 
                 BaseMob otherMob = manager.mobDict[uniqueID];
 
-                // Check if the otherMob is food
-                if ((otherMob.mobType == attachedMob.mobType) && (otherMob.managerID != attachedMob.managerID)){
+                // Check if the otherMob is of the same type and not itself
+                if ((otherMob.mobType == attachedMob.mobType) 
+                    && (otherMob.managerID != attachedMob.managerID) 
+                    && (otherMob.wantsToMate())){
+
                     // Distance to food item
                     double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
                     // If distance is closer than the last distance saved, update the closest distance and ID
@@ -78,6 +90,7 @@ public abstract class BaseBehaviour
                         closestFoodID = uniqueID;
                         closestFoodPosition = otherMob.rigidBody.position;
                     }
+                    
                 }
 
             } else {

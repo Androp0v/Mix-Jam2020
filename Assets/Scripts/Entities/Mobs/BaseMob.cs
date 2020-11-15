@@ -16,6 +16,9 @@ public abstract class BaseMob : MonoBehaviour
     // MOB STATS
     public MobManager manager; // Single object that manages all mobs
 
+    [SerializeField]
+    public GameObject mobPrefab; // Prefab used to generate children 
+
     private const float maxAge = 300; /// Age until mob dies
     public virtual double getMaxAge(){
         return maxAge;
