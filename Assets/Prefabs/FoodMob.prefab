@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 59dc5bc42257afe41a27442f7877dca7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95756e06bdf12b042a16a36eea16d260, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,6 @@ MonoBehaviour:
   rigidBody: {fileID: 8551641315046718331}
   managerID: 0
   mobType: 1
-  oldDirection: {x: 0, y: 0}
-  nextDirection: {x: 0, y: 0}
 --- !u!50 &8551641315046718331
 Rigidbody2D:
   serializedVersion: 4
