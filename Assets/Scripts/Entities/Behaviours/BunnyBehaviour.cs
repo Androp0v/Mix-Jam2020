@@ -77,10 +77,11 @@ public class BunnyBehaviour : BaseBehaviour
         // PREDATOR CHECK
 
         checkPredatorTooClose(BaseMob.FOX_MOB);
-
+        
         Vector2? directionPredator = new Vector2();
         int? predatorID = 0;
         (directionPredator, predatorID) = getClosestPredator(BaseMob.FOX_MOB);
+        Debug.Log(directionPredator.ToString());
 
         if (directionPredator.HasValue){
             // If there's food nearby, try to get it

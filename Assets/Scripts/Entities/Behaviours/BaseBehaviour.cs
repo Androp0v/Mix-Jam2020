@@ -37,15 +37,19 @@ public abstract class BaseBehaviour
                     if ((distance < matingRadius) && (otherMob.wantsToMate() && attachedMob.wantsToMate())){
                         attachedMob.timeSinceLastMating = 0;
                         otherMob.timeSinceLastMating = 0;
+
+                        Debug.Log("SHOULD MATE");
                         
                         // Compute mating position as the average between the two positions
                         float positionX = (float) (attachedMob.rigidBody.position.x + otherMob.rigidBody.position.x) / 2.0f;
                         float positionY = (float) (attachedMob.rigidBody.position.y + otherMob.rigidBody.position.y) / 2.0f;
                         
                         // Save the child object
-                        GameObject child = GameObject.Instantiate(attachedMob.mobPrefab, new Vector2(positionX, positionY), Quaternion.identity);
+                        GameObject child = GameObject.Instantiate(attachedMob.mobPrefabChild, new Vector2(positionX, positionY), Quaternion.identity);
                         // Childs do not want to mate
                         child.GetComponent<BaseMob>().timeSinceLastMating = 0.0;
+
+                        Debug.Log(child.ToString());
 
                         return;
                     }
