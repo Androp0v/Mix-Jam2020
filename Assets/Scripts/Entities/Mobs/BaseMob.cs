@@ -34,6 +34,11 @@ public abstract class BaseMob : MonoBehaviour
         return seekingFoodRadius;
     }
 
+    private const double fleeFromPredatorRadius = 2; // Radius for seeking food
+    public double getFleeFromPredatorRadius(){
+        return fleeFromPredatorRadius;
+    }
+
     private float mobSpeed = 1; // Speed at which the mob moves
     public virtual float getMobSpeed(){
         return mobSpeed;

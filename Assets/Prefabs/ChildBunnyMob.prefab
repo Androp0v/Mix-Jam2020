@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2371892547284824442}
   - component: {fileID: 2371892547284824421}
-  - component: {fileID: 2371892547284824420}
   - component: {fileID: 2371892547284824443}
   - component: {fileID: 2125687596783495267}
+  - component: {fileID: 2384352362081569462}
   m_Layer: 0
   m_Name: ChildBunnyMob
   m_TagString: Untagged
@@ -85,23 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2371892547284824420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371892547284824423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0b7c682714342509f47896efe92ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  rigidBody: {fileID: 2371892547284824443}
-  managerID: 0
-  mobType: 1
-  timeSinceLastMating: 1.7976931348623157e+308
 --- !u!50 &2371892547284824443
 Rigidbody2D:
   serializedVersion: 4
@@ -149,3 +132,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.637058, y: 0.6726438}
   m_EdgeRadius: 0
+--- !u!114 &2384352362081569462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371892547284824423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28b714a4634c4af1bb8fef4ef0d0e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  mobPrefab: {fileID: 2371892547284824423, guid: b8e74a46dee414330bb625b9c0550c22, type: 3}
+  mobPrefabChild: {fileID: 2371892547284824423}
+  rigidBody: {fileID: 2371892547284824443}
+  managerID: 0
+  mobType: 1
+  timeSinceLastMating: 1.7976931348623157e+308

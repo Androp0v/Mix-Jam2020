@@ -19,6 +19,14 @@ public class FoxChildBehaviour : BaseBehaviour
             attachedMob.OnDeath();
         }
 
+        // MAP BOUNDS CHECK
+        if (attachedMob.rigidBody.velocity == Vector2.zero){
+            randomWalk();
+        }
+        if (checkIfOutsideMap()){
+            attachedMob.rigidBody.velocity = Vector2.zero;
+        }
+
 
     }
 }

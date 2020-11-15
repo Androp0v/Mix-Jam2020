@@ -16,6 +16,33 @@ public abstract class BaseBehaviour
     private Vector2 _movementDirection = new Vector2(0,0);
     private int _currentSteps = 0;
     private const int interpolatingSteps = 30;
+
+    // HARDCODED MAP LIMITS
+    public bool checkIfOutsideMap(){
+        Vector2 nextPosition = attachedMob.rigidBody.position + attachedMob.rigidBody.velocity*0.5f;
+        float m1 = 0.49f;
+        float b1 = 7.96f;
+        if (nextPosition.y > (nextPosition.x*m1 + b1)){
+            return true;
+        }
+        float m2 = -0.49f;
+        float b2 = 4.85f;
+        if (nextPosition.y > (nextPosition.x*m2 + b2)){
+            return true;
+        }
+        float m3 = -0.49f;
+        float b3 = -14.03f;
+        if (nextPosition.y < (nextPosition.x*m3 + b3)){
+            return true;
+        }
+        float m4 = 0.49f;
+        float b4 = -10.96f;
+        if (nextPosition.y < (nextPosition.x*m4 + b4)){
+            return true;
+        }
+
+        return false;
+    }
     
     // Check if it's mating
     public virtual void checkIfMating(){
@@ -48,8 +75,6 @@ public abstract class BaseBehaviour
                         GameObject child = GameObject.Instantiate(attachedMob.mobPrefabChild, new Vector2(positionX, positionY), Quaternion.identity);
                         // Childs do not want to mate
                         child.GetComponent<BaseMob>().timeSinceLastMating = 0.0;
-
-                        Debug.Log(child.ToString());
 
                         return;
                     }
@@ -145,11 +170,6 @@ public abstract class BaseBehaviour
     // Check if another creature is close to mate
     public virtual (Vector2?, int?) getClosestPredator(int predatorType){
 
-        // Check that the timeframe after last mating is enough
-        if (!attachedMob.wantsToMate()){
-            return (null, null);
-        }
-
         double minFoodDistance = double.MaxValue;
         Vector2 closestFoodPosition = Vector2.zero;
         int closestFoodID = -1; // Set initial closestFoodID to -1 (invalid, all IDs are chosen positive in the manager)
@@ -163,14 +183,12 @@ public abstract class BaseBehaviour
                 BaseMob otherMob = manager.mobDict[uniqueID];
 
                 // Check if the otherMob is of the same type and not itself
-                if ((otherMob.mobType == predatorType) 
-                    && (otherMob.managerID != attachedMob.managerID) 
-                    && (otherMob.wantsToMate())){
+                if ((otherMob.mobType == predatorType)){
 
                     // Distance to food item
                     double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
                     // If distance is closer than the last distance saved, update the closest distance and ID
-                    if ((distance < minFoodDistance) & (distance < attachedMob.getSeekingFoodRadius())){
+                    if ((distance < minFoodDistance) & (distance < attachedMob.getFleeFromPredatorRadius())){
                         minFoodDistance = distance;
                         closestFoodID = uniqueID;
                         closestFoodPosition = otherMob.rigidBody.position;
@@ -239,6 +257,13 @@ public abstract class BaseBehaviour
     protected void randomWalk(){
         
         float maxAngle = 0.1f;
+
+        // In case mobs get stuck
+        if (checkIfOutsideMap()){
+            _currentSteps = interpolatingSteps;
+            _oldDirection = new Vector2(0, 0);
+            _nextDirection = new Vector2(0, 0);
+        }
 
         if (_oldDirection == new Vector2(0, 0) || _nextDirection == new Vector2(0, 0)){
             _oldDirection = new Vector2(Random.Range(-1f, 1f), (Random.Range(-1f, 1f))).normalized;

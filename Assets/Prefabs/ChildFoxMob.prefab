@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2371892547284824442}
   - component: {fileID: 2371892547284824421}
   - component: {fileID: 2371892547284824443}
-  - component: {fileID: 1590474777371451671}
   - component: {fileID: 5437260585942802711}
+  - component: {fileID: -1378615090962027366}
   m_Layer: 0
   m_Name: ChildFoxMob
   m_TagString: Untagged
@@ -106,23 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1590474777371451671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371892547284824423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93261b4e9cbc0459792be474dda03c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  rigidBody: {fileID: 2371892547284824443}
-  managerID: 0
-  mobType: 1
-  timeSinceLastMating: 1.7976931348623157e+308
 --- !u!61 &5437260585942802711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,3 +132,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6054455, y: 0.61013126}
   m_EdgeRadius: 0
+--- !u!114 &-1378615090962027366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371892547284824423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d2f328272ee4b7f90fd2d684904ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  mobPrefab: {fileID: 2371892547284824423, guid: 30fdd57839a80d243859c43f65a07d02, type: 3}
+  mobPrefabChild: {fileID: 2371892547284824423}
+  rigidBody: {fileID: 2371892547284824443}
+  managerID: 0
+  mobType: 1
+  timeSinceLastMating: 1.7976931348623157e+308

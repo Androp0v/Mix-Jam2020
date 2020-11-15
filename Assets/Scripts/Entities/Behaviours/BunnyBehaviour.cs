@@ -16,9 +16,7 @@ public class BunnyBehaviour : BaseBehaviour
         Vector2? direction = new Vector2();
         int? foodID = 0;
         (direction, foodID) = getClosestFood(BaseMob.STATIC_FOOD);
-        Debug.Log("No food found");
         if (direction.HasValue){
-            Debug.Log("There's a direction");
             Vector2 moveDirection = direction ?? Vector2.zero;
             attachedMob.rigidBody.velocity = moveDirection;
         }
@@ -81,12 +79,19 @@ public class BunnyBehaviour : BaseBehaviour
         Vector2? directionPredator = new Vector2();
         int? predatorID = 0;
         (directionPredator, predatorID) = getClosestPredator(BaseMob.FOX_MOB);
-        Debug.Log(directionPredator.ToString());
 
         if (directionPredator.HasValue){
             // If there's food nearby, try to get it
             Vector2 moveDirection = ( -directionPredator ?? Vector2.zero ).normalized;
             attachedMob.rigidBody.velocity = moveDirection * attachedMob.getMobSpeed();
+        }
+
+        // MAP BOUNDS CHECK
+        if (attachedMob.rigidBody.velocity == Vector2.zero){
+            randomWalk();
+        }
+        if (checkIfOutsideMap()){
+            attachedMob.rigidBody.velocity = Vector2.zero;
         }
 
 

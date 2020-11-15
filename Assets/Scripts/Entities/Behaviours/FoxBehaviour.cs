@@ -52,6 +52,14 @@ public class FoxBehaviour : BaseBehaviour
         } else {
             randomWalk();
         }
+
+        // MAP BOUNDS CHECK
+        if (attachedMob.rigidBody.velocity == Vector2.zero){
+            randomWalk();
+        }
+        if (checkIfOutsideMap()){
+            attachedMob.rigidBody.velocity = Vector2.zero;
+        }
     }
     
 }

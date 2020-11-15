@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2371892547284824442}
   - component: {fileID: 2371892547284824421}
-  - component: {fileID: 2371892547284824420}
   - component: {fileID: 2371892547284824443}
   - component: {fileID: 2125687596783495267}
+  - component: {fileID: -7792420113446350409}
   m_Layer: 0
   m_Name: ChildCarrotMob
   m_TagString: Untagged
@@ -85,24 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2371892547284824420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371892547284824423}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0b7c682714342509f47896efe92ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  mobPrefab: {fileID: 2371892547284824423}
-  rigidBody: {fileID: 2371892547284824443}
-  managerID: 0
-  mobType: 1
-  timeSinceLastMating: 1.7976931348623157e+308
 --- !u!50 &2371892547284824443
 Rigidbody2D:
   serializedVersion: 4
@@ -150,3 +132,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0168686, y: 1.3506058}
   m_EdgeRadius: 0
+--- !u!114 &-7792420113446350409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371892547284824423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec86bfd840b5947ff9053686e0afd2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  mobPrefab: {fileID: 2371892547284824423, guid: e9d3528365d54ab4087a3c78720d547d, type: 3}
+  mobPrefabChild: {fileID: 2371892547284824423}
+  rigidBody: {fileID: 2371892547284824443}
+  managerID: 0
+  mobType: 1
+  timeSinceLastMating: 1.7976931348623157e+308
