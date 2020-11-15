@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5842294537942188069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8351626, y: -2.5829046, z: -73.16403}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 714567611
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d961eb6bf9cce6f4393fb05d36893b5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5842294537942188070
@@ -95,8 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6417eb994718fe54b8f9a7e4415fa70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  step1: {fileID: 21300000, guid: 4448d20e55d67b04f9ab60b29812bd36, type: 3}
-  step2: {fileID: 21300000, guid: 33e6fc0c98d57bc458702bd128de54db, type: 3}
-  step3: {fileID: 21300000, guid: a98881db7545eaf4a9d2157be101357d, type: 3}
-  step4: {fileID: 21300000, guid: 0f851c2f09a3e59408d814f0e85c7e94, type: 3}
+  step1: {fileID: 21300000, guid: 295193a19338ad540b191c8f36d7648e, type: 3}
+  step2: {fileID: 21300000, guid: c788173dd6466ec4ba87bd2f970c3bef, type: 3}
+  step3: {fileID: 21300000, guid: 8ca107545c37fed4096372e7d0c0eee3, type: 3}
+  step4: {fileID: 21300000, guid: d961eb6bf9cce6f4393fb05d36893b5a, type: 3}
   foodMob: {fileID: 8551641315046718335, guid: f4fef32197d874ba8b4388265d26feb2, type: 3}
+  carrotMob: {fileID: 2371892547284824423, guid: 61986e18a515beb408bfb416f824797f, type: 3}
+  carrotProbability: 0.5

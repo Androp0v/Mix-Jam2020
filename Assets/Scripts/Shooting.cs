@@ -13,13 +13,14 @@ public class Shooting : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<BaseMob>() != null)
+        if (other.gameObject.tag == "Target")
         { targets.Add(other.gameObject); }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        targets.Remove(other.gameObject);
+        if (other.gameObject.tag == "Target")
+        { targets.Remove(other.gameObject); }
     }
 
 
@@ -28,7 +29,7 @@ public class Shooting : MonoBehaviour
         startTime = Time.time;
         targets = new List<GameObject>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         if(Time.time-startTime > shootingRate)

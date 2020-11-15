@@ -9,11 +9,6 @@ public class GameController : MonoBehaviour
     public float life;
     public float lifeSpeed = 0.1f;
 
-    void Start()
-    {
-        life = 3f;
-    }
-
     void Update()
     {
         life -= lifeSpeed * Time.deltaTime;

@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<BaseMob>() != null)
+        if (other.gameObject.tag == "Target")
         {
-            other.gameObject.GetComponent<BunnyMob>().OnDeath(); ;
+            other.gameObject.GetComponent<FoxMob>().OnDeath(); ;
             Destroy(gameObject);
         }
     }
