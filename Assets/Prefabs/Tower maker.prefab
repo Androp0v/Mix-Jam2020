@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
   notower: {fileID: 805258222517723350, guid: 73ab7535fe1cece43932751af86efca3, type: 3}
-  tower1: {fileID: 6885271644579353254, guid: 8c542b7032b20584599c5d7fbe617ff4, type: 3}
+  tower1: {fileID: 79004200994129179, guid: 8c542b7032b20584599c5d7fbe617ff4, type: 3}
 --- !u!58 &2466457824618421526
 CircleCollider2D:
   m_ObjectHideFlags: 0
