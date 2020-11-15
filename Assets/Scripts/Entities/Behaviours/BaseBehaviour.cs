@@ -68,7 +68,7 @@ public abstract class BaseBehaviour
                     // Distance to food item
                     double distance = Vector2.Distance(attachedMob.rigidBody.position, otherMob.rigidBody.position);
                     // If distance is closer than the last distance saved, update the closest distance and ID
-                    if (distance < minFoodDistance){
+                    if ((distance < minFoodDistance) & (distance < attachedMob.getSeekingFoodRadius())){
                         minFoodDistance = distance;
                         closestFoodID = uniqueID;
                         closestFoodPosition = otherMob.rigidBody.position;

@@ -11,7 +11,7 @@ public class FoxBehaviour : BaseBehaviour
 
         Vector2? direction = new Vector2();
         int? foodID = 0;
-        (direction, foodID) = getClosestFood(BaseMob.FOX_MOB);
+        (direction, foodID) = getClosestFood(BaseMob.BUNNY_MOB);
 
         // If direction is not null it means it has found a close food
         if (direction.HasValue){
